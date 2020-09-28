@@ -40,7 +40,6 @@ NB Hierbij mag je van de `helloWorld` methode NIET een static methode maken.
     }
 
 ```
-NB, 
 
 ### 1C. Start met Maven
 Geef tenslotte het Maven commando om deze `main` methode vanaf de command line te starten.
@@ -61,19 +60,19 @@ En hem hierbij ook testbaar maken via wat refactoring acties in IntelliJ.
 
 Dit doen we in een serie van refactorings:
 
-A. Gebruik `Extract Superclass` om de `greet` methode naar zijn eigen klasse `Greeter` te verplaatsen.
-B. Introduceer een variabele/constante GREETING voor de tekst `"Hello, World in general and... `.
-C. Hernoem de bestaande `Greeter` klasse naar `EnglishGreeter`
-C. Gebruik een `Extract...` refactoring om nu een abstracte klasse of interface `Greeter` te maken die de `greet(name)` methode bevat.
-D Vervang compile time type van `EnglishGreeter` variabelen in `Main` door `Greeter`.
-E. Maak een tweede implementatie van de nieuwe `Greeter` genaamd `SpanishGreeter` die de volgende tekst teruggeeft aanroep van `greet()`:
+- A. Gebruik `Extract Superclass` om de `greet` methode naar zijn eigen klasse `Greeter` te verplaatsen.
+- B. Introduceer een variabele/constante GREETING voor de tekst `"Hello, World in general and... `.
+- C. Hernoem de bestaande `Greeter` klasse naar `EnglishGreeter`
+- C. Gebruik een `Extract...` refactoring om nu een abstracte klasse of interface `Greeter` te maken die de `greet(name)` methode bevat.
+- D Vervang compile time type van `EnglishGreeter` variabelen in `Main` door `Greeter`.
+- E. Maak een tweede implementatie van de nieuwe `Greeter` genaamd `SpanishGreeter` die de volgende tekst teruggeeft aanroep van `greet()`:
 `"¡Hola, mundo en general y '%s' específicamente!"`
 
-NB Het omgekeerde uitroepteken aan het begin van de spaanse groet is dus GEEN `i` :). Maar als copy-pasten niet werkt, mag je dit ook gebruiken ;).
+NB Het omgekeerde uitroepteken `¡` aan het begin van de spaanse groet is dus GEEN `i` :). Maar als copy-pasten niet werkt, mag je dit ook gebruiken ;).
 De `%s` in de string zorgt ervoor dat de String.format methode deze kan vervangen door de tweede meegegeven parameter. Hier staan dus weer quotes omheen in de string om hem eruit te laten springen, net als in de Engelse versie.
 
 ### Opgave 2B Refactoring, vs code smells vs design patterns
-Zorg hierbij dat de bij A aangemaakte `GREETING` op de meest logische plek staat nu we tweetalig zijn, en splits deze in twee 'variabelen' `SPANISH_GREETING` en `ENGLISH_GREETING`.
+Zorg hierbij dat de bij A aangemaakte `GREETING` op de meest logische plek staat nu we tweetalig zijn.
 
 Hierbij is de term 'magic string' relevant. Wat is dit?
 A. De naam van een code smell
@@ -84,8 +83,7 @@ D. Geen van beiden, magic string is een design pattern
 ### Opgave 2C Runnen, ¡Hola!
 Bij Refactoring B ben je gevraagd om `Extract superclass` te doen, maar het is logischer dat je Main klasse een `Greeter` *heeft* in plaats van dat dit een Greeter *is*. Dit hoort bij het OO principe: 'Favor composition over inheritance'.
 
-Verwijder dus gebruik van de superklasse en geef de `Main` een property met type `IGreeter`. Maak in de `main` hiervan nu een instantie aan van de `SpanishGreeter`, en test of dit werkt (mag runnen in IntelliJ of Maven).
-
+Verwijder dus gebruik van de superklasse en geef de `Main` een property met type `Greeter`. Maak in de `main` hiervan nu een instantie aan van de `SpanishGreeter`, en test of dit werkt door de main te runnen (mag zowel in IntelliJ als met Maven).
 
 ## Opgave 3 Unit tests & Dependency management
 
@@ -140,98 +138,6 @@ De `greet` methode print een lege naam als de gebruiker direct enter drukt in pl
 Pas je code zo aan dat als de exceptie gegooid wordt de main methode om een naam blijft vragen tot de gebruiker wel een string invoert.
 
 # TODO
-Onderstaande is nog niet klaar, maak hiervoor de `PrimeTester` opgave (https://github.com/HANICA-DEA/exercise-maven-threading).
+Opgaven met multithreading en lambda expressies zijn nog niet klaar, maak hiervoor de `PrimeTester` opgave (https://github.com/HANICA-DEA/exercise-maven-threading).
 
-## Opgave 5 Lambda expressies - 5 punten
-### TODO Work in progress
-
-
-Voeg een klasse `StudentResult` toe in je project.
-Herschrijf onderstaande imperatieve code in de average functie naar functionele variant die met Streams werkt. Je hoeft niet per se naar de huidige werking te kijken. Maar de 'average' functie berekent het gemiddeld cijfer als float tussen 0.0 en 10.0, maar 'streept' hierbij het laagste behaalde cijfer nog weg.
-
-```java
-public class StudentResult {
-
-    private List<Grade> grades = 
-
-    private Student student;
-
-    public StudentResult(Student student, List<Grade> grades) {
-        this.student = student;
-        this.grades = grades;
-    }
-
-    public int average()
-        let sum = 0.0;
-        let minimum = 0.0;
-        for (var grade: this.grades) {
-            let gradeValue = grade.getValue();
-            sum = sum + gradeValue
-            if minimum>gradeValue {
-                minimum=gradeValue;
-            }
-        }
-        // Lowest grade can be skipped.
-        sum = sum-minimum;
-
-        // Determine the average of the rest of the grades.
-        var average = (sum/grades.size()-1);
-        return average;
-    }
-
-    public boolean isSufficient() {
-        return average()>=5.5
-    }
-}
-
-class Student {
-    private int studentId;
-    private String name;
-
-    public Student(int studentId, String name) {
-        this.name = name;
-        this.studentId = studentId;
-    }
-
-    @Override
-    public equals(Object student) {
-        if (!student instanceof Student) {
-            return false;
-        }
-        return studentId==student.studentID;
-    }
-}
-
-class Grade() {
-    public Grade(float value) {
-        if (value>10.0 || value <0.0) {
-            throw InvalidArgumentException("Grade should be between 0.0 and 10.0 (inclusive these borders)");
-        }
-        this.value = value;
-    }
-    getValue() {
-        return value;
-    }
-    // TODO (later): Connect course info per grade....
-}
-```
-
-Schrijf een functionele interface genaamd 'Averageable` met een methode `average` die een lijst van cijfers verwacht
-
-Zorg dat de `StudentResult` klasse deze functionele interface implementeert.
-
-Zorg dat de methode `average` als deze een cijferlijst (grades) met minder dan drie cijfers erin krijgt een custom exception `NotEnoughGradesException` gooit. De methode . Moet je hier dan een checked exception van maken of een unchecked exception?
-Hoe doe je dit? Zet deze exception in een subpackage 
-
-## Opgave 6 - Multithreading - 10 punten
-
-### TODO Work in progress
-Het is einde van het blok, de gemiddeldes moeten uitgerekend worden van duizenden studenten. We 
-gaan nu het uitrekenen van gemiddeldes uit de vorige opgave parallel laten uitvoeren, door meerdere threads te starten.
-
-### 6A Bepaal welke klasse Runnable moet worden
-
-### 6B Synchroniseer op de student iterator
-
-### 6C 
 
