@@ -1,4 +1,4 @@
-# Proefopgaven DEA Toets 2020
+# Proefopgaven DEA 2020
 - *Versie: 0.1*
 - *Datum: 28 september 2020*
 - *Auteur: Bart van der Wal*
@@ -42,7 +42,7 @@ NB Hierbij mag je van de `helloWorld` methode NIET een static methode maken.
 ```
 NB, 
 
-### 1D. Start met Maven
+### 1C. Start met Maven
 Geef tenslotte het Maven commando om deze `main` methode vanaf de command line te starten.
 Vul deze hieronder in.
 
