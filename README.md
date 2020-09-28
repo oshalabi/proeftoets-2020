@@ -60,6 +60,7 @@ We gaan nu de simpele applicatie van opgave 1 uitbreiden principe om meertalig t
 En hem hierbij ook testbaar maken via wat refactoring acties in IntelliJ.
 
 Dit doen we in een serie van refactorings:
+
 A. Gebruik `Extract Superclass` om de `greet` methode naar zijn eigen klasse `Greeter` te verplaatsen.
 B. Introduceer een variabele/constante GREETING voor de tekst `"Hello, World in general and... `.
 C. Hernoem de bestaande `Greeter` klasse naar `EnglishGreeter`
