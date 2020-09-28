@@ -104,8 +104,8 @@ Geef als `name` de string `"Don Quixote"` mee en gebruik onderstaande `expected`
     var expected = "¡Hola, mundo en general y 'Don Quixote' específicamente!";
 ```
 
-### Opgave 3B Before
-Refactor je test code ook, naar meer DRY code. Zie hierbij `"Don Quichote"` ook als magic string. Gebruik hierbij ook initialisatie volgens JUnit methode.
+### Opgave 3C Before
+Refactor nu je geschreven test code nog om meer DRY te zijn. Zie hierbij `"Don Quichote"` ook als magic string. En gebruik hierbij ook initialisatie van testwaarden en sut met de standaard JUnit methode.
 
 ## Opgave 4 Exceptions
 
