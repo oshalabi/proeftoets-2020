@@ -1,7 +1,7 @@
 # Proefopgaven DEA Toets 2020
-*Versie: 0.1*
-*Datum: 28 september 2020*
-*Auteur: Bart van der Wal*
+- *Versie: 0.1*
+- *Datum: 28 september 2020*
+- *Auteur: Bart van der Wal*
 
 In deze serie opgaven maak je zelf een nieuwe Java applicatie, met wat functionaliteit en tests en refactort deze.
 NB Deze repo bevat dus GEEN werkend project. Normaal maak jezelf een `README.md` aan in een nieuw project. Maar zet nu gewoon dit bestand in je project na het aanmaken van je project bij opgave 1.
